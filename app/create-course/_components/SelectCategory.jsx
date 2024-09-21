@@ -3,6 +3,7 @@ import {CategoryList} from "@/app/_shared/CategoryList";
 import Image from "next/image";
 import React, { useContext } from "react";
 
+
 const SelectCategory = () => {
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
 
