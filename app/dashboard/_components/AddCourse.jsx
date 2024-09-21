@@ -7,7 +7,7 @@ import React from "react";
 const AddCourse = () => {
   const { user } = useUser();
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex md:items-center md:flex-row flex-col md:justify-between">
       <div>
         <h2 className="text-3xl">
           Hello,
@@ -17,7 +17,7 @@ const AddCourse = () => {
           </p>
         </h2>
       </div>
-      <Link href="/create-course">
+      <Link href="/create-course" className="my-5 md:my-0">
         <Button>+ Create AI Course</Button>
       </Link>
     </div>
