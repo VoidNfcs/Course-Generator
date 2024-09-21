@@ -32,9 +32,7 @@ const CreateCourse = () => {
 
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
 
-  useEffect(() => {
-    console.log(userCourseInput);
-  }, [userCourseInput]);
+  useEffect(() => {}, [userCourseInput]);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
