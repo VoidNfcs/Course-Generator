@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider, GoogleOneTap } from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Outfit({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <SpeedInsights />
         <GoogleOneTap />
         <body className={`${inter.variable} antialiased`}>{children}</body>
       </html>
