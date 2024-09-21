@@ -38,6 +38,41 @@ const CreateCourse = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Used to check Next Button Enable or Disable Status
+  const checkStatus = () => {
+    if (userCourseInput.length == 0) {
+      return true;
+    } else if (
+      activeIndex == 0 &&
+      (userCourseInput?.category?.length == 0 ||
+        userCourseInput?.category == undefined)
+    ) {
+      return true;
+    } else if (
+      activeIndex == 1 &&
+      (userCourseInput?.topic?.length == 0 ||
+        userCourseInput?.topic == undefined ||
+        userCourseInput?.description?.length == 0 ||
+        userCourseInput?.description == undefined)
+    ) {
+      return true;
+    } else if (
+      activeIndex == 2 &&
+      (userCourseInput?.level?.length == 0 ||
+        userCourseInput?.level == undefined ||
+        userCourseInput?.duration?.length == 0 ||
+        userCourseInput?.duration == undefined ||
+        userCourseInput?.displayVideo?.length == 0 ||
+        userCourseInput?.displayVideo == undefined ||
+        userCourseInput?.noOfChapters?.length == 0 ||
+        userCourseInput?.noOfChapters == undefined)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div>
       {/* Stepper */}
@@ -88,14 +123,15 @@ const CreateCourse = () => {
             Previous
           </Button>
           {activeIndex < 2 && (
-            <Button onClick={() => setActiveIndex(activeIndex + 1)}>
+            <Button
+              onClick={() => setActiveIndex(activeIndex + 1)}
+              disabled={checkStatus()}
+            >
               Next
             </Button>
           )}
           {activeIndex == 2 && (
-            <Button onClick={() => setActiveIndex(activeIndex + 1)}>
-              Generate
-            </Button>
+            <Button disabled={checkStatus()}>Generate</Button>
           )}
         </div>
       </div>

@@ -82,6 +82,7 @@ const SelectOption = () => {
           <Input
             type={"number"}
             defaultValue={userCourseInput?.noOfChapters}
+            placeholder={'ex: 5'}
             onChange={(e) => handleInputChange("noOfChapters", e.target.value)}
           />
         </div>

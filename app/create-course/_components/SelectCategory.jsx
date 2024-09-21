@@ -1,17 +1,16 @@
 import { UserInputContext } from "@/app/_context/UserInputContext";
-import CategoryList from "@/app/_shared/CategoryList";
+import {CategoryList} from "@/app/_shared/CategoryList";
 import Image from "next/image";
 import React, { useContext } from "react";
 
 const SelectCategory = () => {
-  
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
 
   const handleChategoryChange = (category) => {
-    setUserCourseInput(prev =>({
+    setUserCourseInput((prev) => ({
       ...prev,
-      category:category,
-    }))
+      category: category,
+    }));
   };
 
   return (
@@ -20,10 +19,14 @@ const SelectCategory = () => {
       <div className="grid grid-cols-3 gap-10 ">
         {CategoryList.map((item, index) => (
           <div
-            className={`flex flex-col p-5 border items-center rounded-xl hover:border-black hover:bg-blue-50 cursor-pointer ${userCourseInput?.category==item.name && 'bg-blue-50 border-black'}`}
+            key={index}
+            className={`flex flex-col p-5 border items-center rounded-xl hover:border-black hover:bg-blue-50 cursor-pointer ${
+              userCourseInput?.category == item.name &&
+              "bg-blue-50 border-black"
+            }`}
             onClick={() => handleChategoryChange(item.name)}
           >
-            <Image src={item.icon} width={50} height={50} />
+            <Image src={item.icon} width={50} height={50} alt="..." />
             <h2>{item.name}</h2>
           </div>
         ))}

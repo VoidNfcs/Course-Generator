@@ -49,9 +49,8 @@ const Sidebar = () => {
 
       <ul>
         {Menu.map((item, index) => (
-          <Link href={item.path}>
+          <Link href={item.path} key={item.id}>
             <div
-              key={item.id}
               className={`flex items-center gap-2 text-gray-600 mb-3xs p-3 cursor-pointer hover:bg-g-gray-100 hover:text-black rounded-lg ${
                 item.path == path && "bg-g-gray-100 text-black"
               }`}
@@ -66,7 +65,9 @@ const Sidebar = () => {
       <div className="absolute bottom-10 w-[80%]">
         <Progress value={33} />
         <h2 className="text-sm my-2">3 out of 5 Course created</h2>
-        <h2 className="text-xs text-gray-500">Upgrade your plan to get unlimited course generate</h2>
+        <h2 className="text-xs text-gray-500">
+          Upgrade your plan to get unlimited course generate
+        </h2>
       </div>
     </div>
   );
