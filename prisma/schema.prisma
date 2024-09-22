@@ -1,0 +1,22 @@
+// This is your Prisma schema file.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NEXT_PUBLIC_DB_CONNECTION_STRING")
+}
+
+model Course {
+  id                Int      @id @default(autoincrement())
+  courseId         String   @unique
+  name              String
+  category          String
+  level             String
+  courseOutput      Json
+  createdBy         String
+  userName          String?
+  userProfileImage  String?
+}

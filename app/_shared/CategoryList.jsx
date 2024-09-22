@@ -1,4 +1,4 @@
-export const CategoryList = [
+export const CategoryListMenu = [
   {
     id: 1,
     name: "Programing",

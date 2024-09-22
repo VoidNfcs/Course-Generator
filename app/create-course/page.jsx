@@ -10,6 +10,8 @@ import SelectCategory from "./_components/SelectCategory";
 import TopicDescription from "./_components/TopicDescription";
 import SelectOption from "./_components/SelectOption";
 import { UserInputContext } from "../_context/UserInputContext";
+import { GenerateCourseLayout_AI } from "@/configs/AiModel";
+import LoadingDialog from "./_components/LoadingDialog";
 
 const CreateCourse = () => {
   const StepperOptions = [
@@ -34,6 +36,7 @@ const CreateCourse = () => {
 
   useEffect(() => {}, [userCourseInput]);
 
+  const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Used to check Next Button Enable or Disable Status
@@ -49,9 +52,7 @@ const CreateCourse = () => {
     } else if (
       activeIndex == 1 &&
       (userCourseInput?.topic?.length == 0 ||
-        userCourseInput?.topic == undefined ||
-        userCourseInput?.description?.length == 0 ||
-        userCourseInput?.description == undefined)
+        userCourseInput?.topic == undefined)
     ) {
       return true;
     } else if (
@@ -69,6 +70,18 @@ const CreateCourse = () => {
     } else {
       return false;
     }
+  };
+
+  const GenerateCourseLayout = async () => {
+    setLoading(true);
+    const BASIC_PROMPT = `Generate A Couse Tutorial on Following Detail With field as Course Name,Description ,Along with Chapter Name, About, Duration: `;
+    const USER_INPUT_PROMPT = `Category:'${userCourseInput?.category}', Topic: '${userCourseInput?.topic}', Description: '${userCourseInput?.description}', Level: '${userCourseInput?.level}', Duration: '${userCourseInput?.duration}', NoOfChapter: ${userCourseInput?.noOfChapters}, Display Video: '${userCourseInput?.displayVideo}', in JSON format`;
+    const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT;
+    console.log(FINAL_PROMPT);
+    const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
+    console.log(result.response?.text());
+    console.log(JSON.parse(result.response?.text()));
+    setLoading(false);
   };
 
   return (
@@ -129,10 +142,16 @@ const CreateCourse = () => {
             </Button>
           )}
           {activeIndex == 2 && (
-            <Button disabled={checkStatus()}>Generate</Button>
+            <Button
+              disabled={checkStatus()}
+              onClick={() => GenerateCourseLayout()}
+            >
+              Generate
+            </Button>
           )}
         </div>
       </div>
+      <LoadingDialog loading={loading} />
     </div>
   );
 };

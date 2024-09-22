@@ -1,5 +1,5 @@
 import { UserInputContext } from "@/app/_context/UserInputContext";
-import {CategoryList} from "@/app/_shared/CategoryList";
+import {CategoryListMenu} from "@/app/_shared/CategoryList";
 import Image from "next/image";
 import React, { useContext } from "react";
 
@@ -18,7 +18,7 @@ const SelectCategory = () => {
     <div className="px-10 md:px-20">
       <h2 className="my-5">Select the Course Chategory</h2>
       <div className="grid grid-cols-3 gap-10 ">
-        {CategoryList.map((item, index) => (
+        {CategoryListMenu.map((item, index) => (
           <div
             key={index}
             className={`flex flex-col p-5 border items-center rounded-xl hover:border-black hover:bg-blue-50 cursor-pointer ${
